@@ -26,7 +26,7 @@
 
 int main()
 {
-	////создаю первый файл
+	////создаю первый файл 11111
 	ofstream file("first_file.txt");
 	if (!file)
 	{
