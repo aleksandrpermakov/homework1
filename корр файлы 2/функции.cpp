@@ -11,7 +11,7 @@ void Print(char* arr, int length)
 
 }
 
-void LineAalignment(string str1, string str2) // выравнивание строк , добавляю пробелы в меньшую строку
+void LineAalignment(string &str1, string &str2) // выравнивание строк , добавляю пробелы в меньшую строку
 {
 	if (size(str1) > size(str2))
 	{
