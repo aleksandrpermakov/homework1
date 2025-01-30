@@ -47,7 +47,7 @@ int main()
 		if (!file2.is_open())
 		{
 			cerr << "Файл не может быть создан или открыт";
-			cout << "Файл не может быть создан или открыт";
+			
 			exit(1);
 		}
 		else
@@ -60,7 +60,7 @@ int main()
 
 	string str1;
 	string str2;
-	ifstream fileN("first_file.txt");
+	ifstream fileN("first_file.txt"); // считываю из файла в str1 
 		while (!fileN.eof())
 		{
 			string tmp{};
@@ -70,7 +70,7 @@ int main()
 		cout << str1 << '\n';
 		fileN.close();
 		ifstream fileN2("second_file.txt");
-		while (!fileN2.eof())
+		while (!fileN2.eof())// считываю из файла в str2 для первого и второго задания
 		{
 			string tmp{};
 			fileN2 >> tmp;
@@ -107,6 +107,45 @@ int main()
 				}
 			}
 		}
+		// задание 2
+		int symbols{}; //символы
+		int deadlines{1}; //строки
+		int vowels{}; // гласные
+		int consonants{}; // согласные
+		int numbers{}; // цифры
+		char arr_vowels[]{ "AaEeIiOoUuYy" };// массив гласных
+
+		for (int i = 0; i < size(str2); i++) // по символьный цикл
+		{
+			if (str2[i] > char(47) && str2[i] < char(58)) // если по таблице аски это цифра
+			{
+				numbers++;
+			}
+			else if ((str2[i] > char(64) && str2[i] < char(91)) || (str2[i] > char(96) && str2[i] < char(123))) // если по таблице аски это буква
+			{
+				for (int j = 0; j < size(arr_vowels); j++) // цикл на проверку гласных
+				{
+					if (str2[i] == arr_vowels[j]) 
+					{
+						vowels++;
+						break;						
+					}
+					else if (i == size(arr_vowels) - 1) // если на последней итерации цикл не прервал брейк, то добавляется согласная
+					{
+						consonants++;
+					}
+				}
+			}
+			else if (str2[i] == '\n') //если есть перевод строки то добавляем колличество строк 
+			{
+				deadlines++;
+			}
+			symbols++; // каждую итерацию добавляем один символ(пробел тоже символ)
+
+		}
+		cout << "\nquantity symbols: " << symbols << "\n quantity deadlines: " << deadlines << "\nquantity vowels: " << vowels << "\nquantity consonants: "
+			<< consonants << "\nquantity numbers: " << numbers << '\n';
+		cout << char(90);
 
 
 
