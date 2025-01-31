@@ -53,8 +53,8 @@ int main()
 		else
 		{
 			//записываю в файл две строки 
-			file2 << std::setw(3) << "Hello world! ttt" << '\n';
-			file2 << std::setw(3) << "Hello yekaterinburg!" ;
+			file2 << std::setw(3) << "Hello world! ttt33" << '\n';
+			file2 << std::setw(3) << "1 Hello yekaterinburg! 6" ;
 		}
 	file2.close();
 
@@ -115,36 +115,43 @@ int main()
 		int numbers{}; // цифры
 		char arr_vowels[]{ "AaEeIiOoUuYy" };// массив гласных
 
-		for (int i = 0; i < size(str2); i++) // по символьный цикл
+		fileN2.open("second_file.txt"); //открываю файл 2
+		while (!fileN2.eof())
 		{
-			if (str2[i] > char(47) && str2[i] < char(58)) // если по таблице аски это цифра
-			{
-				numbers++;
-			}
-			else if ((str2[i] > char(64) && str2[i] < char(91)) || (str2[i] > char(96) && str2[i] < char(123))) // если по таблице аски это буква
-			{
-				for (int j = 0; j < size(arr_vowels); j++) // цикл на проверку гласных
+			char tmp{};
+			fileN2 >> tmp;
+			//for (int i = 0; i < size(str2); i++) // по символьный цикл
+			//{
+				if (tmp > char(47) && tmp < char(58)) // если по таблице аски это цифра
 				{
-					if (str2[i] == arr_vowels[j]) 
+					numbers++;
+				}
+				else if ((tmp > char(64) && tmp < char(91)) || (tmp > char(96) && tmp < char(123))) // если по таблице аски это буква
+				{
+					for (int j = 0; j < size(arr_vowels); j++) // цикл на проверку гласных
 					{
-						vowels++;
-						break;						
-					}
-					else if (i == size(arr_vowels) - 1) // если на последней итерации цикл не прервал брейк, то добавляется согласная
-					{
-						consonants++;
+						if (tmp == arr_vowels[j])
+						{
+							vowels++;
+							break;
+						}
+						else if (j == size(arr_vowels) - 1) // если на последней итерации цикл не прервал брейк, то добавляется согласная
+						{
+							consonants++;
+						}
 					}
 				}
-			}
-			else if (str2[i] == '\n') //если есть перевод строки то добавляем колличество строк 
-			{
-				deadlines++;
-			}
-			symbols++; // каждую итерацию добавляем один символ(пробел тоже символ)
+				else if (tmp == '\n') //если есть перевод строки то добавляем колличество строк 
+				{
+					deadlines++;
+				}
+				symbols++; // каждую итерацию добавляем один символ(пробел тоже символ)
 
+			//}
 		}
-		cout << "\nquantity symbols: " << symbols << "\n quantity deadlines: " << deadlines << "\nquantity vowels: " << vowels << "\nquantity consonants: "
-			<< consonants << "\nquantity numbers: " << numbers << '\n';
+		file2.close();
+		cout << "\n quantity symbols: " << symbols << "\n quantity deadlines: " << deadlines << "\n quantity vowels: " << vowels << "\n quantity consonants: "
+			<< consonants << "\n quantity numbers: " << numbers << '\n';
 		cout << char(90);
 
 
