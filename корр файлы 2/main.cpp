@@ -133,7 +133,7 @@ int main()
 						if (tmp == arr_vowels[j])
 						{
 							vowels++;
-							break;
+							continue;
 						}
 						else if (j == size(arr_vowels) - 1) // если на последней итерации цикл не прервал брейк, то добавляется согласная
 						{
@@ -141,14 +141,15 @@ int main()
 						}
 					}
 				}
-				else if (tmp == '\n') //если есть перевод строки то добавляем колличество строк 
-				{
-					deadlines++;
-				}
+				//else if (tmp == '\n') //если есть перевод строки то добавляем колличество строк 
+				//{
+				//	deadlines++;
+				//}
 				symbols++; // каждую итерацию добавляем один символ(пробел тоже символ)
 
 			//}
 		}
+		//getline()
 		file2.close();
 		cout << "\n quantity symbols: " << symbols << "\n quantity deadlines: " << deadlines << "\n quantity vowels: " << vowels << "\n quantity consonants: "
 			<< consonants << "\n quantity numbers: " << numbers << '\n';
